@@ -1,19 +1,18 @@
 package com.appointment.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import lombok.NoArgsConstructor;
+
 
 import java.util.Date;
-@Configuration
-@ConfigurationProperties(prefix = "com.appointment")
 @Data
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name="appointments")
 public class Appointment {
-    private String doctor="jones";
+    private String doctor;
 
     private String patient;
     @Column(name="date_start")
@@ -23,6 +22,5 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
 }

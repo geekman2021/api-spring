@@ -1,11 +1,15 @@
 package com.appointment.api;
 
 import com.appointment.models.Appointment;
+import com.appointment.repositories.AppointmentRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Date;
+
 @Data
 @SpringBootApplication(scanBasePackages = "com.appointment.models")
 public class ApiApplication implements CommandLineRunner {
@@ -21,6 +25,6 @@ public class ApiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println(appointment.getDoctor());
+
 	}
 }

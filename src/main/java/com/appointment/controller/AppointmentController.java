@@ -5,24 +5,39 @@ import com.appointment.services.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class AppointmentController {
     @Autowired
     AppointmentService apps;
 
-    @GetMapping("/appointment")
-    public Iterable<Appointment> getAppointments() {
-        return apps.getAllAppointment();
+    @GetMapping("/api/appointments")
+    public List<Appointment> getAllAppointments() {
+        return apps.getAppointments();
+    }
+    @GetMapping("api/appointments/{id}")
+    public Appointment getAppointment(@PathVariable Long id) {
+        return apps.getAppointmentById(id);
     }
 
-    @PostMapping("/appointment")
-    public Appointment postAppointment(Appointment app) {
-        return apps.saveAppointment(app);
+    @PostMapping("api/appointment")
+    public void createAppointment(@RequestBody Appointment appointment) {
+        apps.createAppointment(appointment);
     }
 
-    @DeleteMapping("/deleteAppointment")
-    public void deleteAppointment(Long id) {
+    @PostMapping("api/appointments")
+    public void createAppointments(@RequestBody List<Appointment> appointments) {
+        apps.createAppointments(appointments);
+    }
+
+    @PutMapping("api/appointments")
+    public void updateAppointment(Appointment appointment) {
+        apps.updateAppointment(appointment);
+    }
+
+    @DeleteMapping("api/appointments/{id}")
+    public void deleteAppointment(@PathVariable Long id) {
         apps.deleteAppointment(id);
     }
-
 }
