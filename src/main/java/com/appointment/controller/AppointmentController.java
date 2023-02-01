@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 public class AppointmentController {
     @Autowired
@@ -16,28 +15,28 @@ public class AppointmentController {
     public List<Appointment> getAllAppointments() {
         return apps.getAppointments();
     }
-    @GetMapping("api/appointments/{id}")
-    public Appointment getAppointment(@PathVariable Long id) {
+    @GetMapping("/api/appointments/{id}")
+    public Appointment getAppointment(@PathVariable int id) {
         return apps.getAppointmentById(id);
     }
 
-    @PostMapping("api/appointment")
+    @PostMapping("/api/appointment")
     public void createAppointment(@RequestBody Appointment appointment) {
         apps.createAppointment(appointment);
     }
 
-    @PostMapping("api/appointments")
+    @PostMapping("/api/appointments")
     public void createAppointments(@RequestBody List<Appointment> appointments) {
         apps.createAppointments(appointments);
     }
 
-    @PutMapping("api/appointments")
+    @PutMapping("/api/appointments")
     public void updateAppointment(Appointment appointment) {
         apps.updateAppointment(appointment);
     }
 
-    @DeleteMapping("api/appointments/{id}")
-    public void deleteAppointment(@PathVariable Long id) {
+    @DeleteMapping("/api/appointments/{id}")
+    public void deleteAppointment(@PathVariable int id) {
         apps.deleteAppointment(id);
     }
 }

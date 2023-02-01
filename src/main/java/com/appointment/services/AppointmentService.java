@@ -16,7 +16,7 @@ public class AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepo;
 
-    /*public Optional<Appointment> getAppointment(final Long id) {
+    /*public Optional<Appointment> getAppointment(final int id) {
         return appointmentRepo.findById(id);
     }*/
 
@@ -24,7 +24,7 @@ public class AppointmentService {
         return  appointmentRepo.findAll();
     }
 
-    public Appointment getAppointmentById(Long id) {
+    public Appointment getAppointmentById(int id) {
         return appointmentRepo.findById(id).orElse(null);
     }
 
@@ -38,6 +38,7 @@ public class AppointmentService {
 
     public Appointment updateAppointment(Appointment appointment) {
         Optional<Appointment> optionalAppointment= appointmentRepo.findById(appointment.getId());
+        System.out.println(optionalAppointment);
         if (optionalAppointment.isPresent()) {
             Appointment oldAppointment= optionalAppointment.get();
             oldAppointment.setDoctor(appointment.getDoctor());
@@ -51,7 +52,7 @@ public class AppointmentService {
         }
     }
 
-    public String deleteAppointment(Long id) {
+    public String deleteAppointment(int id) {
         appointmentRepo.deleteById(id);
         return "appointment deleted";
     }
